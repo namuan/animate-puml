@@ -21,6 +21,9 @@ Simple animation for PlantUML diagrams.
 ## Pre-requisites
 
 - [PlantUML](https://plantuml.com/)
+  ```shell
+  brew install plantuml
+  ```
 
 ## Installation
 
