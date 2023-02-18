@@ -47,7 +47,7 @@ class GenerateFrames(WorkflowBase):
     def each_line(self, extracted_text: str) -> Generator[str, None, None]:
         new_text = extracted_text
         for _ in extracted_text.splitlines():
-            new_text = self.replace_once(new_text, r"\[#lightgray]->", "[thickness=3]->")
+            new_text = self.replace_once(new_text, r"\[#lightgray]->", "[thickness=2]->")
             new_text = self.replace_once(new_text, r"\$disabled ", "")
             yield new_text
 
@@ -79,6 +79,7 @@ class GenerateImageForFrames(WorkflowBase):
 
     frames: list[str]
     plantuml_file_path: Path
+    debug: bool
 
     def execute(self) -> dict:
         output_dir = self.plantuml_file_path.parent
@@ -90,8 +91,9 @@ class GenerateImageForFrames(WorkflowBase):
             target_file = output_dir.joinpath(f"{output_file_prefix}-{idx}.puml")
             target_file.write_text(frame)
             run_command(f"plantuml -tpng {target_file}")
-            target_file.unlink()
             image_file_paths.append(target_file.with_suffix(".png"))
+            if not self.debug:
+                target_file.unlink()
 
         return {
             "output_dir": output_dir,
@@ -137,11 +139,13 @@ class CleanUpTemporarilyFiles(WorkflowBase):
     target_animated_gif: Path
     animated_gif_file_path: str
     image_file_paths: list[Path]
+    debug: bool
 
     def execute(self) -> dict:
-        self.target_animated_gif.unlink()
-        for image_file_path in self.image_file_paths:
-            image_file_path.unlink()
+        if not self.debug:
+            self.target_animated_gif.unlink()
+            for image_file_path in self.image_file_paths:
+                image_file_path.unlink()
 
         return {"animated_gif_file_path": self.animated_gif_file_path}
 
@@ -160,6 +164,7 @@ def parse_args() -> Any:
     parser = ArgumentParser(description=__doc__, formatter_class=RawDescriptionHelpFormatter)
     parser.add_argument("-i", "--plantuml-file-path", type=Path, required=True, help="Path to PlantUML file")
     parser.add_argument("-o", "--output-file-path", type=Path, required=True, help="Path to animated gif file")
+    parser.add_argument("-d", "--debug", action="store_true", default=False, help="Leave temporary files for debugging")
     parser.add_argument(
         "-v",
         "--verbose",
