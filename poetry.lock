@@ -1655,6 +1655,18 @@ rich = ">=10.14.0"
 toml = ">=0.10.2"
 
 [[package]]
+name = "types-pillow"
+version = "9.4.0.12"
+description = "Typing stubs for Pillow"
+category = "dev"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-Pillow-9.4.0.12.tar.gz", hash = "sha256:e0074149d5f06d3593c118acc83e353f8542bcc73576ffefb6568eaab5671348"},
+    {file = "types_Pillow-9.4.0.12-py3-none-any.whl", hash = "sha256:b4aaa86b43f53e4d552d2c0381068015121e8990b0369df7c5e3b36fa6266984"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.5.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
@@ -1776,4 +1788,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9.0, <4.0"
-content-hash = "60a76cfbdad52d5f7b5556011ea2b7870337df41c00be3ebfed135eddb8ad2c0"
+content-hash = "e31615f7e74b14cd786e50be4792cedfe89722eb9cabcbc563d40287293c12a5"
