@@ -46,7 +46,7 @@ tests: clean ## Run all tests
 cov-report: ## Generate coverage report
 	poetry run coverage html; open htmlcov/index.html
 
-build: pre-commit tests ## Build package
+build: pre-commit ## Build package
 	poetry build
 
 bump: build ## Bump version and update changelog
