@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "animate-puml"
-version = "0.3.0"
+version = "0.4.0"
 description = "Simple animation of PlantUML diagrams"
 authors = [
     "namuan <github@deskriders.dev>",
@@ -65,7 +65,7 @@ mkdocstrings-python = "^0.8.3"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.3.0"
+version = "0.4.0"
 tag_format = "$version"
 version_files = [
     "pyproject.toml:version",

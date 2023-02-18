@@ -1,3 +1,13 @@
+## 0.4.0 (2023-02-18)
+
+### Feat
+
+- Add padding to avoid cutting images
+
+### Refactor
+
+- Allow option to leave temporary files for debugging
+
 ## 0.3.0 (2023-02-18)
 
 ### Feat
