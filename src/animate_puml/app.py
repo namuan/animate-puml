@@ -11,7 +11,7 @@ from collections.abc import Generator
 from pathlib import Path
 from typing import Any
 
-from PIL import Image
+from PIL import Image  # type: ignore
 from py_executable_checklist.workflow import WorkflowBase, run_command, run_workflow
 from pygifsicle import optimize  # type: ignore
 
@@ -112,10 +112,19 @@ class CombineFramesIntoVideo(WorkflowBase):
     image_file_paths: list[Path]
     output_file_path: Path
 
+    def padded_image(self, original_image: Any) -> Any:
+        width, height = original_image.size
+        padding = 50
+        new_width = width + padding
+        new_height = height + padding
+        new_image = Image.new(original_image.mode, (new_width, new_height), (255, 255, 255))
+        new_image.paste(original_image, ((new_width - width) // 2, (new_height - height) // 2))
+        return new_image
+
     def execute(self) -> dict:
         target_animated_gif = self.output_dir / f"{self.output_file_prefix}.gif"
         target_compressed_animated_gif = self.output_file_path
-        img, *imgs = (Image.open(f) for f in self.image_file_paths)
+        img, *imgs = (self.padded_image(Image.open(f)) for f in self.image_file_paths)
         img.save(
             fp=target_animated_gif.as_posix(),
             format="GIF",

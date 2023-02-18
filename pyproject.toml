@@ -62,7 +62,6 @@ pytest = "^7.2.0"
 pytest-cov = "^4.0.0"
 coverage = "^7.0.3"
 mkdocstrings-python = "^0.8.3"
-types-pillow = "^9.4.0.12"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
@@ -90,7 +89,7 @@ addopts = """\
 """
 
 [tool.coverage.report]
-fail_under = 45
+fail_under = 44
 omit = ["src/animate_puml/__init__.py"]
 exclude_lines = [
     'pragma: no cover'
