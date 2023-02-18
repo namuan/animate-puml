@@ -1,3 +1,9 @@
+## 0.4.1 (2023-02-18)
+
+### Fix
+
+- Use Python3.7 to setup poetry on GH
+
 ## 0.4.0 (2023-02-18)
 
 ### Feat
