@@ -1,5 +1,7 @@
 @startuml
 
+title Securing internal services on Google Cloud Platform with external Auth service
+
 ' scale 1000 width
 
 !$disabled = "<color:lightgray><size:14>"
