@@ -5,6 +5,11 @@ export PROJECTNAME=$(shell basename "$(PWD)")
 setup: ## Setup Virtual Env
 	poetry install
 
+setup-tool: ## Commands to replace references to old package name
+	echo "rg 'doc_search' -l | xargs sd 'doc_search' 'animate_puml'"
+	echo "rg 'doc-search' -l | xargs sd 'doc-search' 'animate-puml'"
+	echo "Update README.md, mkdocs.yaml, CHANGELOG.md"
+
 deps: ## Install/Update dependencies
 	poetry update
 	poetry run pre-commit autoupdate
