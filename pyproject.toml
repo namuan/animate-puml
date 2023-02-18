@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "animate-puml"
-version = "0.0.1"
+version = "0.1.1"
 description = "Simple animation of PlantUML diagrams"
 authors = [
     "namuan <github@deskriders.dev>",
