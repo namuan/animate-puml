@@ -1,0 +1,114 @@
+[tool.poetry]
+name = "animate-puml"
+version = "0.0.1"
+description = "Simple animation of PlantUML diagrams"
+authors = [
+    "namuan <github@deskriders.dev>",
+]
+license = "MIT"
+readme = "README.md"
+
+documentation = "https://namuan.github.io/animate-puml"
+homepage = "https://namuan.github.io/animate-puml"
+repository = "https://github.com/namuan/animate-puml"
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+packages = [
+    { include = "animate_puml", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9.0, <4.0"
+py-executable-checklist = "1.4.0"
+rich = "^13.0.0"
+pytest = "^7.2.0"
+python-dotenv = "^0.21.0"
+pygifsicle = "^1.0.7"
+pillow = "^9.4.0"
+
+[tool.poetry.group.dev.dependencies]
+autoflake = "*"
+black = "*"
+flake8 = "*"
+flake8-bugbear = "*"
+flake8-builtins = "*"
+flake8-comprehensions = "*"
+flake8-debugger = "*"
+flake8-logging-format = "*"
+isort = "*"
+mkdocstrings = "*"
+mkdocs-material = "9.0.1"
+mypy = "*"
+pep8-naming = "*"
+pre-commit = "*"
+pymdown-extensions = "*"
+python-kacl = "*"
+pyupgrade = "*"
+tryceratops = "*"
+commitizen = "^2.20.3"
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+coverage = "^7.0.3"
+mkdocstrings-python = "^0.8.3"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.0"
+tag_format = "$version"
+version_files = [
+    "pyproject.toml:version",
+]
+update_changelog_on_bump = true
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "tests"]
+
+[tool.black]
+line-length = 120
+target-version = ["py37", "py38", "py39"]
+include = '\.pyi?$'
+
+[tool.pytest.ini_options]
+addopts = """\
+    --cov animate_puml \
+    --cov-report term-missing \
+    --no-cov-on-fail \
+"""
+
+[tool.coverage.report]
+fail_under = 45
+omit = ["src/animate_puml/__init__.py"]
+exclude_lines = [
+    'pragma: no cover'
+]
+
+[tool.mypy]
+disallow_any_unimported = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+strict_equality = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_return_any = true
+check_untyped_defs = true
+show_error_codes = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+animate-puml = 'animate_puml.app:main'
