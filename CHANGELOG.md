@@ -1,3 +1,9 @@
+## 0.3.0 (2023-02-18)
+
+### Feat
+
+- More flexible handling for start and end tags
+
 ## 0.2.0 (2023-02-18)
 
 ### Feat

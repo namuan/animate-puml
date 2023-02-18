@@ -38,8 +38,8 @@ class GenerateFrames(WorkflowBase):
     """
 
     plantuml_file_contents: str
-    _start_tag: str = "'\s*start"
-    _end_tag: str = "'\s*end"
+    _start_tag: str = r"'\s*start"
+    _end_tag: str = r"'\s*end"
 
     def replace_once(self, text: str, pattern: str, replacement: str) -> str:
         return re.sub(pattern, replacement, text, count=1)
