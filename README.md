@@ -31,42 +31,32 @@ Simple animation for PlantUML diagrams.
 pip install animate-puml
 ```
 
-## How it works
+## Usage
 
-## Sample PlantUML Document
+Given an example PlantUML document in `assets/security.puml`:
 
-```puml
-@startuml
+```shell
+animate-puml -i assets/security.puml -o assets/security-puml.gif
+```
 
-' scale 1000 width
+By default, the script will delete any temporary files generated during the animation process.
+To keep the files, use the `--debug` flag.
 
-!$disabled = "<color:lightgray><size:14>"
+```shell
+animate-puml -i assets/security.puml -o assets/security-puml.gif --debug
+```
 
-rectangle "<size:20>Client" as Client #LightCyan
-rectangle "AUTH" as Auth
-rectangle "API_GATEWAY" as APIG
+Each frame of the animation will wait for 1 second by default.
+To change the wait time, use the `--frame-duration` flag to specify the time in milliseconds.
 
-rectangle GCP #LightCyan {
-    node "ServiceA" as ServiceA
-    node "ServiceB" as ServiceB
-    node "ServiceC" as ServiceC
-    queue "Kafka" as Queue
-}
+```shell
+animate-puml -i assets/security.puml -o assets/security-puml.gif --frame-duration 4000
+```
 
-' start
-Client -right[#lightgray]-> Auth : $disabled Get Token
-Client -right[#lightgray]-> APIG : $disabled Pass token
-APIG -up[#lightgray]-> Auth : $disabled Validate token
-APIG -right[#lightgray]-> ServiceA : $disabled Pass token
-ServiceA -up[#lightgray]-> Auth : $disabled Validate token
-ServiceA -right[#lightgray]-> ServiceB : $disabled Pass token
-ServiceB -up[#lightgray]-> Auth : $disabled Validate token
-ServiceA -down[#lightgray]-> Queue : $disabled Pass token
-Queue -down[#lightgray]-> ServiceC : $disabled Pass token
-ServiceC -up[#lightgray]-> Auth : $disabled Validate token
-' end
+Use the `-h` flag to see all available options.
 
-@enduml
+```shell
+animate-puml -h
 ```
 
 ## Acknowledgements
