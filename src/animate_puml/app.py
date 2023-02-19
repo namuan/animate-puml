@@ -68,7 +68,7 @@ class GenerateFrames(WorkflowBase):
             )
             modified_extracted_text = i
             frames.append(modified_file_content)
-        # output
+
         return {"frames": frames}
 
 
@@ -111,6 +111,7 @@ class CombineFramesIntoVideo(WorkflowBase):
     output_file_prefix: str
     image_file_paths: list[Path]
     output_file_path: Path
+    frame_duration: int
 
     def padded_image(self, original_image: Any) -> Any:
         width, height = original_image.size
@@ -130,7 +131,7 @@ class CombineFramesIntoVideo(WorkflowBase):
             format="GIF",
             append_images=imgs,
             save_all=True,
-            duration=2000,
+            duration=self.frame_duration,
             loop=0,
         )
         optimize(target_animated_gif, target_compressed_animated_gif)
@@ -174,6 +175,7 @@ def parse_args() -> Any:
     parser.add_argument("-i", "--plantuml-file-path", type=Path, required=True, help="Path to PlantUML file")
     parser.add_argument("-o", "--output-file-path", type=Path, required=True, help="Path to animated gif file")
     parser.add_argument("-d", "--debug", action="store_true", default=False, help="Leave temporary files for debugging")
+    parser.add_argument("-w", "--frame-duration", type=int, default=1000, help="Display duration of each frame in milliseconds")
     parser.add_argument(
         "-v",
         "--verbose",
