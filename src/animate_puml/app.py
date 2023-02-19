@@ -48,7 +48,7 @@ class GenerateFrames(WorkflowBase):
         new_text = extracted_text
         for _ in extracted_text.splitlines():
             new_text = self.replace_once(new_text, r"\[#lightgray]->", "[thickness=2]->")
-            new_text = self.replace_once(new_text, r"\$disabled ", "")
+            new_text = self.replace_once(new_text, r"\$disabled", "$enabled")
             yield new_text
 
     def execute(self) -> dict:

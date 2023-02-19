@@ -5,6 +5,7 @@ title Securing internal services on Google Cloud Platform with external Auth ser
 ' scale 1000 width
 
 !$disabled = "<color:lightgray><size:14>"
+!$enabled = "<size:14>"
 
 rectangle "<size:20>Client" as Client #LightCyan
 rectangle "AUTH" as Auth
