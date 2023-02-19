@@ -1,3 +1,14 @@
+## 0.5.0 (2023-02-19)
+
+### Feat
+
+- Allow user to set display duration of each frame in milliseconds
+- Allow user to define enabled macro which will replace disabled macro
+
+### Refactor
+
+- Formatting
+
 ## 0.4.2 (2023-02-18)
 
 ### Fix
