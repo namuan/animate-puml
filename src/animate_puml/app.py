@@ -194,7 +194,7 @@ def main() -> None:  # pragma: no cover
     setup_logging(args.verbose)
     context = args.__dict__
     run_workflow(context, workflow())
-    print("Generated animation: " + context["animated_gif_file_path"])
+    logging.info("Generated animation: {}", context["animated_gif_file_path"])
 
 
 if __name__ == "__main__":  # pragma: no cover
