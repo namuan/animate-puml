@@ -1,3 +1,9 @@
+## 0.5.1 (2023-02-20)
+
+### Fix
+
+- Replace print with logging
+
 ## 0.5.0 (2023-02-19)
 
 ### Feat
