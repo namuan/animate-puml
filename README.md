@@ -8,6 +8,9 @@ Simple animation for PlantUML diagrams.
 
 ![](assets/security-puml.gif)
 
+Animating sequence diagram.
+
+![](assets/sequence-puml.gif)
 ---
 
 **Documentation**: [https://namuan.github.io/animate-puml](https://namuan.github.io/animate-puml)
@@ -59,6 +62,16 @@ Use the `-h` flag to see all available options.
 animate-puml -h
 ```
 
+## How it works
+
+`animate-puml` looks for three things in the PlantUML document:
+
+1. `' start` and `' end` comments to determine the start and end of lines to animate.
+1. `!$disabled_arrow` and `!$enabled_arrow` macros. These macros are used to enable/disable arrows.
+1. `!$disabled` and `!$enabled` macros. These macros are used to enable/disable text.
+
+See `GenerateFrames` class in `src/animate_puml/app.py` for more details.
+
 ## Acknowledgements
 
 - [PlantUML](https://plantuml.com/)
@@ -76,16 +89,19 @@ poetry install
 ```
 
 * Activate the virtual environment
+
 ```sh
 poetry shell
 ```
 
 ### Validating build
+
 ```sh
 make build
 ```
 
 ### Release process
+
 A release is automatically published when a new version is bumped using `make bump`.
 See `.github/workflows/build.yml` for more details.
 Once the release is published, `.github/workflows/publish.yml` will automatically publish it to PyPI.
