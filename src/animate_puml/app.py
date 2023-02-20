@@ -46,9 +46,9 @@ class GenerateFrames(WorkflowBase):
 
     def each_line(self, extracted_text: str) -> Generator[str, None, None]:
         new_text = extracted_text
-        for _ in extracted_text.splitlines():
+        for idx, _ in enumerate(extracted_text.splitlines()):
             new_text = self.replace_once(new_text, r"\[#lightgray]->", "[thickness=2]->")
-            new_text = self.replace_once(new_text, r"\$disabled", "$enabled")
+            new_text = self.replace_once(new_text, r"\$disabled", f"$enabled {idx+1}:")
             yield new_text
 
     def execute(self) -> dict:
@@ -194,7 +194,7 @@ def main() -> None:  # pragma: no cover
     setup_logging(args.verbose)
     context = args.__dict__
     run_workflow(context, workflow())
-    logging.info("Generated animation: {}", context["animated_gif_file_path"])
+    logging.info("Generated animation: %s", context.get("animated_gif_file_path", "No animated gif file generated"))
 
 
 if __name__ == "__main__":  # pragma: no cover
