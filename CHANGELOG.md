@@ -1,3 +1,9 @@
+## 0.6.0 (2023-02-20)
+
+### Feat
+
+- Add auto-numbering to illustrate process flow
+
 ## 0.5.1 (2023-02-20)
 
 ### Fix
