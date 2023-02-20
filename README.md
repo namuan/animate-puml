@@ -70,7 +70,7 @@ animate-puml -h
 1. `!$disabled_arrow` and `!$enabled_arrow` macros. These macros are used to enable/disable arrows.
 1. `!$disabled` and `!$enabled` macros. These macros are used to enable/disable text.
 
-See `GenerateFrames` class in `src/animate_puml/app.py` for more details.
+See `GenerateFrames` class in [app.py](src/animate_puml/app.py) for more details.
 
 ## Acknowledgements
 
