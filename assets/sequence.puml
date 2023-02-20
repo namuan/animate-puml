@@ -1,0 +1,34 @@
+@startuml
+
+title Adding Employee to Employee Directory
+
+!$disabled_arrow = "#lightgray"
+!$enabled_arrow = "#black"
+
+!$disabled = "<color:lightgray><size:14>"
+!$enabled = "<size:14>"
+
+participant User as user
+participant AddEmployeeController as controller
+participant AddEmployeeApiRequestValidator as validator
+participant AddEmployeeService as service
+participant AddEmployeeMapper as mapper
+participant Repository as db
+participant Kafka as q
+participant FeignClient as downstream
+
+'start
+user -[$disabled_arrow]> controller: $disabled POST /employees
+controller -[$disabled_arrow]> validator: $disabled validateRequest(AddEmployeeApiRequest)
+validator -[$disabled_arrow]> controller: $disabled [void or ConstraintViolationException]
+controller -[$disabled_arrow]> service: $disabled addEmployee(AddEmployeeApiRequest)
+service -[$disabled_arrow]> mapper: $disabled convertObject(AddEmployeeApiRequest)
+mapper -[$disabled_arrow]> service: $disabled [DownstreamApiRequest]
+service -[$disabled_arrow]> downstream: $disabled PUT /v1/employees
+downstream -[$disabled_arrow]> service: $disabled HTTP 200
+service -[$disabled_arrow]> db: $disabled save(EmployeeEntity)
+db -[$disabled_arrow]> service: $disabled UpdatedEmployeeEntity
+service -[$disabled_arrow]> q: $disabled SEND to TOPIC employee-added-v1
+'end
+
+@enduml

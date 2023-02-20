@@ -4,6 +4,9 @@ title Securing internal services on Google Cloud Platform with external Auth ser
 
 ' scale 1000 width
 
+!$disabled_arrow = "#lightgray"
+!$enabled_arrow = "thickness=2"
+
 !$disabled = "<color:lightgray><size:14>"
 !$enabled = "<size:14>"
 
@@ -19,16 +22,16 @@ rectangle GCP #LightCyan {
 }
 
 ' start
-Client -right[#lightgray]-> Auth : $disabled Get Token
-Client -right[#lightgray]-> APIG : $disabled Pass token
-APIG -up[#lightgray]-> Auth : $disabled Validate token
-APIG -right[#lightgray]-> ServiceA : $disabled Pass token
-ServiceA -up[#lightgray]-> Auth : $disabled Validate token
-ServiceA -right[#lightgray]-> ServiceB : $disabled Pass token
-ServiceB -up[#lightgray]-> Auth : $disabled Validate token
-ServiceA -down[#lightgray]-> Queue : $disabled Pass token
-Queue -down[#lightgray]-> ServiceC : $disabled Pass token
-ServiceC -up[#lightgray]-> Auth : $disabled Validate token
+Client -right[$disabled_arrow]-> Auth : $disabled Get Token
+Client -right[$disabled_arrow]-> APIG : $disabled Pass token
+APIG -up[$disabled_arrow]-> Auth : $disabled Validate token
+APIG -right[$disabled_arrow]-> ServiceA : $disabled Pass token
+ServiceA -up[$disabled_arrow]-> Auth : $disabled Validate token
+ServiceA -right[$disabled_arrow]-> ServiceB : $disabled Pass token
+ServiceB -up[$disabled_arrow]-> Auth : $disabled Validate token
+ServiceA -down[$disabled_arrow]-> Queue : $disabled Pass token
+Queue -down[$disabled_arrow]-> ServiceC : $disabled Pass token
+ServiceC -up[$disabled_arrow]-> Auth : $disabled Validate token
 ' end
 
 @enduml
